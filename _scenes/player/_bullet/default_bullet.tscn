@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3b5qb57agh0b"]
+
+[ext_resource type="Texture2D" uid="uid://dhr01qss67lk0" path="res://_assets/bullet/player/default_player_bullet.png" id="1_mtuy5"]
+[ext_resource type="PackedScene" uid="uid://dfpiqrhnccxh2" path="res://_scenes/components/bullet/bullet_component.tscn" id="2_38as2"]
+[ext_resource type="PackedScene" uid="uid://xixo7bxm2mjq" path="res://_scenes/components/kill_timer/kill_timer_component.tscn" id="3_b40xn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_38as2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mtuy5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mtuy5"]
+height = 37.999992
+
+[node name="DefaultBullet" type="Area2D" groups=["enemy_hitbox"]]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_38as2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_mtuy5")
+
+[node name="BulletComponent" parent="." node_paths=PackedStringArray("bullet_node") instance=ExtResource("2_38as2")]
+bullet_node = NodePath("..")
+
+[node name="KillTimerComponent" parent="." node_paths=PackedStringArray("target_node") instance=ExtResource("3_b40xn")]
+target_node = NodePath("..")
+kill_time = 2.0

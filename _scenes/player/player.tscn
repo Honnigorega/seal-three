@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://d1wlh56w20k2l"]
+
+[ext_resource type="Texture2D" uid="uid://b6u6s4utpdkan" path="res://_assets/player/three/three.png" id="1_4p4qn"]
+[ext_resource type="Script" uid="uid://chc8plnmw8wt4" path="res://_scenes/player/player.gd" id="1_mc5mj"]
+[ext_resource type="PackedScene" uid="uid://de3r2htl6nu24" path="res://_scenes/components/movement/movement_component.tscn" id="3_kwiuj"]
+[ext_resource type="PackedScene" uid="uid://y3x3pxjeobpe" path="res://_scenes/components/hitbox/hitbox.tscn" id="4_t0n7v"]
+[ext_resource type="PackedScene" uid="uid://dvdql64hhpa4q" path="res://_scenes/components/bullet_spawner/bullet_spawner.tscn" id="5_t0n7v"]
+[ext_resource type="PackedScene" uid="uid://c3b5qb57agh0b" path="res://_scenes/player/_bullet/default_bullet.tscn" id="6_ovqt1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mc5mj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4p4qn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kwiuj"]
+radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_owg25"]
+radius = 5.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_owg25"]
+radius = 8.0
+height = 26.0
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_mc5mj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mc5mj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kwiuj")
+debug_color = Color(0, 0.6, 0.701961, 0.156863)
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("movable_node") instance=ExtResource("3_kwiuj")]
+movable_node = NodePath("..")
+
+[node name="Hitbox" parent="." instance=ExtResource("4_t0n7v")]
+collision_group = "player_hitbox"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-3, 0)
+shape = SubResource("CircleShape2D_owg25")
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_t0n7v")]
+collision_group = "player_hurtbox"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-4, 0)
+shape = SubResource("CapsuleShape2D_owg25")
+
+[node name="PrimaryWeapon" parent="." node_paths=PackedStringArray("spawner_owner") instance=ExtResource("5_t0n7v")]
+position = Vector2(25, -2)
+spawner_owner = NodePath("..")
+bullet_scene = ExtResource("6_ovqt1")
+input_action = "use_primary"
+firerate = 0.1
