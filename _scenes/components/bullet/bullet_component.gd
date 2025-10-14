@@ -1,10 +1,11 @@
+class_name BulletComponent
 extends Node
 
 @export var bullet_node: Node2D
 
-@export var speed := 1200
+@export var speed := 1200.0
 @export var size := 1.0
-@export var damage := 1.0
+@export var damage := 1
 @export var accuracy := 100.0
 @export var max_random_spread := 0.5
 @export var speed_variation := 0.0
@@ -13,6 +14,7 @@ var random_spread := 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Check required components
 	assert(bullet_node, "ERROR: You must provide a bullet_node.")
 
 	bullet_node.scale = Vector2(size, size)

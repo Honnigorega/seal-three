@@ -1,3 +1,4 @@
+class_name KillTimerComponent
 extends Node
 
 @export var target_node: Node
@@ -5,7 +6,10 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Check required components
 	assert(target_node, "ERROR: You must provide a target_node.")
+	
+	# Signal handlers
 	$Timer.timeout.connect(_on_timeout)
 
 	$Timer.start(kill_time)

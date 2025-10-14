@@ -28,28 +28,29 @@ radius = 5.0
 radius = 8.0
 height = 26.0
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="Area2D" node_paths=PackedStringArray("hitbox", "hurtbox")]
 script = ExtResource("1_mc5mj")
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mc5mj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kwiuj")
-debug_color = Color(0, 0.6, 0.701961, 0.156863)
+debug_color = Color(0, 0.6, 0.7019608, 0)
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("movable_node") instance=ExtResource("3_kwiuj")]
 movable_node = NodePath("..")
 
-[node name="Hitbox" parent="." instance=ExtResource("4_t0n7v")]
-collision_group = "player_hitbox"
+[node name="Hitbox" parent="." groups=["player_hitbox"] instance=ExtResource("4_t0n7v")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-3, 0)
 shape = SubResource("CircleShape2D_owg25")
+debug_color = Color(1, 0.6, 0.69803923, 0.41960785)
 
-[node name="Hurtbox" parent="." instance=ExtResource("4_t0n7v")]
-collision_group = "player_hurtbox"
+[node name="Hurtbox" parent="." groups=["player_hurtbox"] instance=ExtResource("4_t0n7v")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-4, 0)

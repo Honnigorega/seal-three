@@ -28,7 +28,11 @@ window/stretch/mode="viewport"
 
 [global_group]
 
-enemy_hitbox="Triggers collision with enemies"
+player_hitbox="Anything that collides with the player hitbox"
+player_hurtbox="Anything that collides with the player hurtbox"
+enemy_hitbox="Anything that collides with the enemy hitbox"
+enemy_hurtbox="Anything that collides with the enemy hurtbox"
+bullet="Anything that is considered a bullet"
 
 [input]
 

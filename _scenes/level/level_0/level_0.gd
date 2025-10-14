@@ -5,10 +5,8 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Check required components
 	assert(player, "ERROR: You must add the Player to the level scene.")
+	
 	# Set player position to spawn
 	player.position = player_spawn_point.position
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
