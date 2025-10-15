@@ -1,15 +1,29 @@
 @tool
+class_name EnemySpawnTrigger
 extends VisibleOnScreenNotifier2D
+
+enum SpawnDirection {
+	TOP,
+	BOTTOM,
+	LEFT,
+	RIGHT
+}
 
 var enemy_scene_dict = {
 	Global.Enemy.LILY_OF_THE_VALLEY: load("res://_scenes/enemy/lily_of_the_valley/lily_of_the_valley.tscn"),
 }
+
+@export var spawn_direction: SpawnDirection = SpawnDirection.RIGHT:
+	set(value):
+		spawn_direction = value
+		$EnemySpawnSprite.set_sprite_position_by_spawn_direction(spawn_direction)
 
 ## Which type of enemy will be spawned
 @export var enemy_type: Global.Enemy = Global.Enemy.LILY_OF_THE_VALLEY:
 	set(value):
 		enemy_type = value
 		$EnemySpawnSprite.change_sprite_by_enemy_type(value)
+		$EnemySpawnSprite.set_sprite_position_by_spawn_direction(spawn_direction)
 
 ## Brain chip to be used for behavior instructions
 @export var brain_chip: BrainChip = BrainChip.new()
@@ -27,7 +41,7 @@ func _on_screen_entered() -> void:
  
 func _spawn_enemy_by_type(type: Global.Enemy) -> void:
 	var enemy = enemy_scene_dict[type].instantiate()
-	enemy.position = global_position
+	enemy.position = $EnemySpawnSprite.global_position
 	var enemy_brain = enemy.get_node_or_null("Brain")
 	if enemy_brain && brain_chip:
 		enemy_brain.brain_chip = brain_chip
