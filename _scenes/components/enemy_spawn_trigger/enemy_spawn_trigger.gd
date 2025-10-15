@@ -24,8 +24,6 @@ func _ready() -> void:
 func _on_screen_entered() -> void:
 	# Spawn the specified enemy type
 	_spawn_enemy_by_type(enemy_type)
-	# Hide the spawner (Can be reused, we don't want to remove the node)
-	hide()
  
 func _spawn_enemy_by_type(type: Global.Enemy) -> void:
 	var enemy = enemy_scene_dict[type].instantiate()
