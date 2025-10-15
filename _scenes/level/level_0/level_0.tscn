@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cn5yf5f2xr7cu"]
+[gd_scene load_steps=23 format=3 uid="uid://cn5yf5f2xr7cu"]
 
 [ext_resource type="Texture2D" uid="uid://b2jexltkv2ouy" path="res://_assets/background/development/checkers_3640x360.png" id="1_5wt28"]
 [ext_resource type="Script" uid="uid://wxgotlllxwp4" path="res://_scenes/level/level_0/level_0.gd" id="1_mt7nd"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://d0q5njetjit6b" path="res://_scripts/brain_chip/_move_instruction.gd" id="8_avs67"]
 [ext_resource type="Script" uid="uid://yo4t3kr1nxpy" path="res://_scripts/brain_chip/_wait_time_instruction.gd" id="9_345gn"]
 [ext_resource type="Script" uid="uid://6juadj6p6tma" path="res://_scripts/brain_chip/_shoot_instruction.gd" id="10_xnppv"]
+[ext_resource type="Script" uid="uid://7sa75g0r31qa" path="res://_scripts/brain_chip/_wait_distance_instruction.gd" id="11_345gn"]
 
 [sub_resource type="Resource" id="Resource_avs67"]
 script = ExtResource("6_6pxtv")
@@ -37,8 +38,29 @@ metadata/_custom_type_script = "uid://6juadj6p6tma"
 script = ExtResource("7_52x47")
 instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_ljkrg"), SubResource("Resource_qsiyn"), SubResource("Resource_xwbkf")])
 
-[node name="Level0" type="Node"]
+[sub_resource type="Resource" id="Resource_8sfdc"]
+script = ExtResource("8_avs67")
+speed = 500.0
+metadata/_custom_type_script = "uid://d0q5njetjit6b"
+
+[sub_resource type="Resource" id="Resource_eelgs"]
+script = ExtResource("11_345gn")
+distance = 400.0
+metadata/_custom_type_script = "uid://7sa75g0r31qa"
+
+[sub_resource type="Resource" id="Resource_xnppv"]
+script = ExtResource("8_avs67")
+speed = -100.0
+metadata/_custom_type_script = "uid://d0q5njetjit6b"
+
+[sub_resource type="Resource" id="Resource_7ywba"]
+script = ExtResource("7_52x47")
+instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_8sfdc"), SubResource("Resource_eelgs"), SubResource("Resource_xnppv")])
+
+[node name="Level0" type="Node" node_paths=PackedStringArray("player", "player_spawn_point")]
 script = ExtResource("1_mt7nd")
+player = NodePath("Player")
+player_spawn_point = NodePath("PlayerSpawnPoint")
 
 [node name="Background" type="Parallax2D" parent="."]
 repeat_size = Vector2(3600, 0)
@@ -58,27 +80,55 @@ offset_bottom = 40.0
 texture = ExtResource("3_621ws")
 
 [node name="EnemySpawnTrigger" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(971, 180)
+position = Vector2(802, 180)
 brain_chip = SubResource("Resource_345gn")
 
 [node name="EnemySpawnTrigger2" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(979, 180)
+position = Vector2(810, 180)
 brain_chip = SubResource("Resource_345gn")
 
 [node name="EnemySpawnTrigger3" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(987, 180)
+position = Vector2(818, 180)
 brain_chip = SubResource("Resource_345gn")
 
 [node name="EnemySpawnTrigger4" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(995, 180)
+position = Vector2(826, 180)
 brain_chip = SubResource("Resource_345gn")
 
 [node name="EnemySpawnTrigger5" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(1003, 180)
+position = Vector2(834, 180)
 brain_chip = SubResource("Resource_345gn")
 
 [node name="EnemySpawnTrigger6" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(662, 180)
+position = Vector2(702, 180)
+brain_chip = SubResource("Resource_v6cmc")
+
+[node name="EnemySpawnTrigger7" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
+position = Vector2(736, 99)
+brain_chip = SubResource("Resource_7ywba")
+
+[node name="EnemySpawnTrigger8" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
+position = Vector2(735, 260)
+brain_chip = SubResource("Resource_7ywba")
+
+[node name="EnemySpawnTrigger10" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
+position = Vector2(921, 151)
+brain_chip = SubResource("Resource_7ywba")
+
+[node name="EnemySpawnTrigger11" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
+position = Vector2(920, 211)
+brain_chip = SubResource("Resource_7ywba")
+
+[node name="EnemySpawnTrigger12" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
+position = Vector2(999, 98)
+brain_chip = SubResource("Resource_7ywba")
+
+[node name="EnemySpawnTrigger13" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
+position = Vector2(998, 261)
+brain_chip = SubResource("Resource_7ywba")
+
+[node name="EnemySpawnTrigger9" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
+position = Vector2(949, 180)
 brain_chip = SubResource("Resource_v6cmc")
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="."]
