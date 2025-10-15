@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3b5qb57agh0b"]
+
+[ext_resource type="Script" uid="uid://dmsw3yf1cnoqq" path="res://_scenes/player/_bullet/player_bullet.gd" id="1_0x1ij"]
+[ext_resource type="Texture2D" uid="uid://dhr01qss67lk0" path="res://_assets/bullet/player/default_player_bullet.png" id="2_byaxp"]
+[ext_resource type="PackedScene" uid="uid://dfpiqrhnccxh2" path="res://_scenes/components/bullet/bullet_component.tscn" id="3_wts8f"]
+[ext_resource type="PackedScene" uid="uid://xixo7bxm2mjq" path="res://_scenes/components/kill_timer/kill_timer_component.tscn" id="4_kq3nj"]
+[ext_resource type="PackedScene" uid="uid://y3x3pxjeobpe" path="res://_scenes/components/hitbox/hitbox.tscn" id="5_lpq7e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_38as2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_byaxp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mtuy5"]
+height = 37.999992
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yrxul"]
+height = 37.999992
+
+[node name="PlayerBulletDefault" type="Area2D" node_paths=PackedStringArray("bullet_component", "kill_timer_component", "hitbox") groups=["player_bullet"]]
+script = ExtResource("1_0x1ij")
+bullet_component = NodePath("BulletComponent")
+kill_timer_component = NodePath("KillTimerComponent")
+hitbox = NodePath("Hitbox")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_38as2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_mtuy5")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="BulletComponent" parent="." node_paths=PackedStringArray("bullet_node") instance=ExtResource("3_wts8f")]
+bullet_node = NodePath("..")
+
+[node name="KillTimerComponent" parent="." node_paths=PackedStringArray("target_node") instance=ExtResource("4_kq3nj")]
+target_node = NodePath("..")
+kill_time = 2.0
+
+[node name="Hitbox" parent="." groups=["hitbox"] instance=ExtResource("5_lpq7e")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yrxul")
+debug_color = Color(0, 0.6, 0.69803923, 0)

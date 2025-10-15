@@ -14,8 +14,9 @@ func _ready() -> void:
 	
 	hitbox.hit.connect(_on_hitbox_hit)
 
-func _on_hitbox_hit(_area: Area2D) -> void:
-	$AnimationPlayer.play("hit_flash")
+func _on_hitbox_hit(area: Area2D) -> void:
+	if area.is_in_group("hitbox") && area.owner.is_in_group("player_bullet"):
+		$AnimationPlayer.play("hit_flash")
 
 func show_explosion() -> void:
 	var new_explosion = explosion.instantiate()

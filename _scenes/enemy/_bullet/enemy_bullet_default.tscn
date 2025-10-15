@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://urb33rb60afi"]
+
+[ext_resource type="Script" uid="uid://wqxftg3qs110" path="res://_scenes/enemy/_bullet/enemy_bullet.gd" id="1_d0wa7"]
+[ext_resource type="Texture2D" uid="uid://d4kb7dt7qhshi" path="res://_assets/bullet/enemy/default/default_0.png" id="2_yoh2c"]
+[ext_resource type="Texture2D" uid="uid://bt5ibrgdrmsrl" path="res://_assets/bullet/enemy/default/default_1.png" id="3_sy8eu"]
+[ext_resource type="PackedScene" uid="uid://dfpiqrhnccxh2" path="res://_scenes/components/bullet/bullet_component.tscn" id="4_s7h7i"]
+[ext_resource type="PackedScene" uid="uid://xixo7bxm2mjq" path="res://_scenes/components/kill_timer/kill_timer_component.tscn" id="5_akphu"]
+[ext_resource type="PackedScene" uid="uid://y3x3pxjeobpe" path="res://_scenes/components/hitbox/hitbox.tscn" id="6_wppm6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k5xyu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yoh2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sy8eu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqb2w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a8xyp"]
+
+[node name="EnemyBulletDefault" type="Area2D" node_paths=PackedStringArray("bullet_component", "kill_timer_component", "hitbox") groups=["enemy_bullet"]]
+z_index = 10
+script = ExtResource("1_d0wa7")
+bullet_component = NodePath("BulletComponent")
+kill_timer_component = NodePath("KillTimerComponent")
+hitbox = NodePath("Hitbox")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_k5xyu")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_wqb2w")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="BulletComponent" parent="." node_paths=PackedStringArray("bullet_node") instance=ExtResource("4_s7h7i")]
+bullet_node = NodePath("..")
+speed = -500.0
+
+[node name="KillTimerComponent" parent="." node_paths=PackedStringArray("target_node") instance=ExtResource("5_akphu")]
+target_node = NodePath("..")
+kill_time = 3.0
+
+[node name="Hitbox" parent="." groups=["hitbox"] instance=ExtResource("6_wppm6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_a8xyp")
+debug_color = Color(0, 0.6, 0.69803923, 0)

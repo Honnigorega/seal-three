@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://de3r2htl6nu24" path="res://_scenes/components/movement/movement_component.tscn" id="3_kwiuj"]
 [ext_resource type="PackedScene" uid="uid://y3x3pxjeobpe" path="res://_scenes/components/hitbox/hitbox.tscn" id="4_t0n7v"]
 [ext_resource type="PackedScene" uid="uid://dvdql64hhpa4q" path="res://_scenes/components/bullet_spawner/bullet_spawner.tscn" id="5_t0n7v"]
-[ext_resource type="PackedScene" uid="uid://c3b5qb57agh0b" path="res://_scenes/player/_bullet/default_bullet.tscn" id="6_ovqt1"]
+[ext_resource type="PackedScene" uid="uid://c3b5qb57agh0b" path="res://_scenes/player/_bullet/player_bullet_default.tscn" id="6_ovqt1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mc5mj"]
 animations = [{
@@ -28,7 +28,7 @@ radius = 5.0
 radius = 8.0
 height = 26.0
 
-[node name="Player" type="Area2D" node_paths=PackedStringArray("hitbox", "hurtbox")]
+[node name="Player" type="Area2D" node_paths=PackedStringArray("hitbox", "hurtbox") groups=["player"]]
 script = ExtResource("1_mc5mj")
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
@@ -43,14 +43,14 @@ debug_color = Color(0, 0.6, 0.7019608, 0)
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("movable_node") instance=ExtResource("3_kwiuj")]
 movable_node = NodePath("..")
 
-[node name="Hitbox" parent="." groups=["player_hitbox"] instance=ExtResource("4_t0n7v")]
+[node name="Hitbox" parent="." groups=["hitbox"] instance=ExtResource("4_t0n7v")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-3, 0)
 shape = SubResource("CircleShape2D_owg25")
 debug_color = Color(1, 0.6, 0.69803923, 0.41960785)
 
-[node name="Hurtbox" parent="." groups=["player_hurtbox"] instance=ExtResource("4_t0n7v")]
+[node name="Hurtbox" parent="." groups=["hurtbox"] instance=ExtResource("4_t0n7v")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-4, 0)

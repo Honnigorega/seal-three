@@ -28,11 +28,12 @@ window/stretch/mode="viewport"
 
 [global_group]
 
-player_hitbox="Anything that collides with the player hitbox"
-player_hurtbox="Anything that collides with the player hurtbox"
-enemy_hitbox="Anything that collides with the enemy hitbox"
-enemy_hurtbox="Anything that collides with the enemy hurtbox"
-bullet="Anything that is considered a bullet"
+enemy="Anything that is considered an enemy"
+player="Anything that is considered a player"
+hurtbox="Anything that is considered a hurtbox"
+hitbox="Anything that is considered a hitbox"
+player_bullet="Anything that is considered a player bullet"
+enemy_bullet="Anything that is considered an enemy bullet"
 
 [input]
 

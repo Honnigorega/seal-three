@@ -1,7 +1,12 @@
+class_name Player
 extends Area2D
+
+signal death
 
 @export var hitbox: Hitbox
 @export var hurtbox: Hitbox
+## --- Debug ---
+@export var god_mode := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,8 +18,17 @@ func _ready() -> void:
 	Global.player_node = self 
 	
 	# Signal handlers
-	hitbox.hit.connect(_on_hit)
-	hurtbox.hit.connect(_on_hit)
+	hitbox.hit.connect(_on_hitbox_hit)
+	hurtbox.hit.connect(_on_hurtbox_hit)
 
-func _on_hit(_area: Area2D) -> void:
-	print("Game Over")
+func _on_hitbox_hit(area: Area2D) -> void:
+	if god_mode: return
+	if area.is_in_group("hitbox") && area.owner.is_in_group("enemy_bullet"):
+		# Since the player only has one life currently, any hit will result in death
+		death.emit()
+
+func _on_hurtbox_hit(area: Area2D) -> void:
+	if god_mode: return
+	if area.is_in_group("hurtbox") && area.owner.is_in_group("enemy"):
+		# Since the player only has one life currently, any hit will result in death
+		death.emit()
