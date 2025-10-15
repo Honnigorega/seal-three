@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cn5yf5f2xr7cu"]
+[gd_scene load_steps=38 format=3 uid="uid://cn5yf5f2xr7cu"]
 
 [ext_resource type="Texture2D" uid="uid://b2jexltkv2ouy" path="res://_assets/background/development/checkers_3640x360.png" id="1_5wt28"]
 [ext_resource type="Script" uid="uid://wxgotlllxwp4" path="res://_scenes/level/level_0/level_0.gd" id="1_mt7nd"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://yo4t3kr1nxpy" path="res://_scripts/brain_chip/_wait_time_instruction.gd" id="9_345gn"]
 [ext_resource type="Script" uid="uid://6juadj6p6tma" path="res://_scripts/brain_chip/_shoot_instruction.gd" id="10_xnppv"]
 [ext_resource type="Script" uid="uid://7sa75g0r31qa" path="res://_scripts/brain_chip/_wait_distance_instruction.gd" id="11_345gn"]
+[ext_resource type="Script" uid="uid://dbnogpal2q36j" path="res://_scripts/brain_chip/_change_speed_instruction.gd" id="12_ljkrg"]
+[ext_resource type="Script" uid="uid://dnqn2xjxuh08b" path="res://_scripts/brain_chip/_change_angle_instruction.gd" id="13_qsiyn"]
 
 [sub_resource type="Resource" id="Resource_avs67"]
 script = ExtResource("6_6pxtv")
@@ -37,6 +39,73 @@ metadata/_custom_type_script = "uid://6juadj6p6tma"
 [sub_resource type="Resource" id="Resource_v6cmc"]
 script = ExtResource("7_52x47")
 instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_ljkrg"), SubResource("Resource_qsiyn"), SubResource("Resource_xwbkf")])
+
+[sub_resource type="Resource" id="Resource_cpy3i"]
+script = ExtResource("9_345gn")
+metadata/_custom_type_script = "uid://yo4t3kr1nxpy"
+
+[sub_resource type="Resource" id="Resource_ibceq"]
+script = ExtResource("8_avs67")
+angle = 0.5
+speed = 400.0
+metadata/_custom_type_script = "uid://d0q5njetjit6b"
+
+[sub_resource type="Resource" id="Resource_p6rfk"]
+script = ExtResource("11_345gn")
+distance = 120.0
+metadata/_custom_type_script = "uid://7sa75g0r31qa"
+
+[sub_resource type="Resource" id="Resource_tvfke"]
+script = ExtResource("12_ljkrg")
+to = 20.0
+weight = -10.0
+metadata/_custom_type_script = "uid://dbnogpal2q36j"
+
+[sub_resource type="Resource" id="Resource_uibfo"]
+script = ExtResource("9_345gn")
+time = 0.4
+metadata/_custom_type_script = "uid://yo4t3kr1nxpy"
+
+[sub_resource type="Resource" id="Resource_0llhx"]
+script = ExtResource("10_xnppv")
+metadata/_custom_type_script = "uid://6juadj6p6tma"
+
+[sub_resource type="Resource" id="Resource_fwqkd"]
+script = ExtResource("9_345gn")
+time = 0.4
+metadata/_custom_type_script = "uid://yo4t3kr1nxpy"
+
+[sub_resource type="Resource" id="Resource_02g74"]
+script = ExtResource("13_qsiyn")
+to = 1.0
+weight = 0.005
+metadata/_custom_type_script = "uid://dnqn2xjxuh08b"
+
+[sub_resource type="Resource" id="Resource_0oq08"]
+script = ExtResource("12_ljkrg")
+to = 300.0
+weight = 20.0
+metadata/_custom_type_script = "uid://dbnogpal2q36j"
+
+[sub_resource type="Resource" id="Resource_rv785"]
+script = ExtResource("7_52x47")
+instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_cpy3i"), SubResource("Resource_ibceq"), SubResource("Resource_p6rfk"), SubResource("Resource_tvfke"), SubResource("Resource_uibfo"), SubResource("Resource_0llhx"), SubResource("Resource_fwqkd"), SubResource("Resource_02g74"), SubResource("Resource_0oq08")])
+
+[sub_resource type="Resource" id="Resource_h7lw3"]
+script = ExtResource("8_avs67")
+angle = 1.5
+speed = 400.0
+metadata/_custom_type_script = "uid://d0q5njetjit6b"
+
+[sub_resource type="Resource" id="Resource_x2qyi"]
+script = ExtResource("13_qsiyn")
+to = 1.0
+weight = -0.005
+metadata/_custom_type_script = "uid://dnqn2xjxuh08b"
+
+[sub_resource type="Resource" id="Resource_276ow"]
+script = ExtResource("7_52x47")
+instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_cpy3i"), SubResource("Resource_h7lw3"), SubResource("Resource_p6rfk"), SubResource("Resource_tvfke"), SubResource("Resource_uibfo"), SubResource("Resource_0llhx"), SubResource("Resource_fwqkd"), SubResource("Resource_x2qyi"), SubResource("Resource_0oq08")])
 
 [sub_resource type="Resource" id="Resource_8sfdc"]
 script = ExtResource("8_avs67")
@@ -80,55 +149,70 @@ offset_bottom = 40.0
 texture = ExtResource("3_621ws")
 
 [node name="EnemySpawnTrigger" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(802, 180)
+position = Vector2(1005, 180)
 brain_chip = SubResource("Resource_345gn")
 
 [node name="EnemySpawnTrigger2" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(810, 180)
+position = Vector2(1013, 180)
 brain_chip = SubResource("Resource_345gn")
 
 [node name="EnemySpawnTrigger3" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(818, 180)
+position = Vector2(1021, 180)
 brain_chip = SubResource("Resource_345gn")
 
 [node name="EnemySpawnTrigger4" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(826, 180)
+position = Vector2(1029, 180)
 brain_chip = SubResource("Resource_345gn")
 
 [node name="EnemySpawnTrigger5" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(834, 180)
+position = Vector2(1037, 180)
 brain_chip = SubResource("Resource_345gn")
 
 [node name="EnemySpawnTrigger6" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(702, 180)
+position = Vector2(671, 180)
 brain_chip = SubResource("Resource_v6cmc")
 
+[node name="EnemySpawnTrigger14" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
+position = Vector2(721, 18)
+spawn_direction = 0
+brain_chip = SubResource("Resource_rv785")
+
+[node name="EnemySpawnTrigger16" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
+position = Vector2(721, 343)
+spawn_direction = 1
+brain_chip = SubResource("Resource_276ow")
+
+[node name="EnemySpawnTrigger15" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
+position = Vector2(840, 18)
+spawn_direction = 0
+brain_chip = SubResource("Resource_rv785")
+
 [node name="EnemySpawnTrigger7" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(736, 99)
+position = Vector2(939, 99)
 brain_chip = SubResource("Resource_7ywba")
 
 [node name="EnemySpawnTrigger8" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(735, 260)
+position = Vector2(938, 260)
 brain_chip = SubResource("Resource_7ywba")
 
 [node name="EnemySpawnTrigger10" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(921, 151)
+position = Vector2(1124, 151)
 brain_chip = SubResource("Resource_7ywba")
 
 [node name="EnemySpawnTrigger11" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(920, 211)
+position = Vector2(1123, 211)
 brain_chip = SubResource("Resource_7ywba")
 
 [node name="EnemySpawnTrigger12" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(999, 98)
+position = Vector2(1202, 98)
 brain_chip = SubResource("Resource_7ywba")
 
 [node name="EnemySpawnTrigger13" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(998, 261)
+position = Vector2(1201, 261)
 brain_chip = SubResource("Resource_7ywba")
 
 [node name="EnemySpawnTrigger9" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(949, 180)
+position = Vector2(1152, 180)
 brain_chip = SubResource("Resource_v6cmc")
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="."]
