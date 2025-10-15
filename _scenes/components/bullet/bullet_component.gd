@@ -9,6 +9,8 @@ extends Node
 @export var accuracy := 100.0
 @export var max_random_spread := 0.5
 @export var speed_variation := 0.0
+@export var is_piercing := false
+@export var pierce_value := 1
 
 var random_spread := 0.0
 
