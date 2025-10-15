@@ -1,12 +1,18 @@
+class_name Brain
 extends Node
 
 # Brain component that interpretes instructions based on a provided brain_chip
 # When referring to "owner", it's the root node of the tree this brain is attached to
 
 ## Brain chip that contains instructions
-## Can be set from the spawner node, or directly for an enemy
+## Can be set from the spawner node, or directly for an enemy as a default
 @export var brain_chip: BrainChip
-## Instructions are obtained from the resource
+## Default angle the unit will move in
+@export var default_angle := 1.0
+## Default speed the unit will move by
+@export var default_speed := 100.0
+
+## Instructions are read from the brain chip
 var brain_instructions: Array[Instruction] = []
 ## Used as buffer inbetween instructions
 var wait_timer: Timer
@@ -16,8 +22,8 @@ var state := 0
 
 ## Velocity, angle and speed of the owner's movement
 var velocity := Vector2.ZERO
-var angle := 0.0
-var speed := 0.0
+var angle := default_angle
+var speed := default_speed
 
 ## Speed and angle value transitions
 ## The more weight the faster the transition
