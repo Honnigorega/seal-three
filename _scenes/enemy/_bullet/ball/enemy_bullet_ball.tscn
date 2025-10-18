@@ -1,0 +1,102 @@
+[gd_scene load_steps=13 format=3 uid="uid://b3dv5iv1o6sw"]
+
+[ext_resource type="Script" uid="uid://wqxftg3qs110" path="res://_scenes/enemy/_bullet/enemy_bullet.gd" id="1_cuuoj"]
+[ext_resource type="Texture2D" uid="uid://biipwb6mo07ib" path="res://_assets/bullet/enemy/ball/ball_0.png" id="2_b35yi"]
+[ext_resource type="Texture2D" uid="uid://bk100ho65hjru" path="res://_assets/bullet/enemy/ball/ball_1.png" id="3_ul6q4"]
+[ext_resource type="PackedScene" uid="uid://dfpiqrhnccxh2" path="res://_scenes/components/bullet/bullet_component.tscn" id="4_ul21n"]
+[ext_resource type="PackedScene" uid="uid://xixo7bxm2mjq" path="res://_scenes/components/kill_timer/kill_timer_component.tscn" id="5_atprl"]
+[ext_resource type="PackedScene" uid="uid://y3x3pxjeobpe" path="res://_scenes/components/hitbox/hitbox.tscn" id="6_uxm7m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_foiwq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b35yi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ul6q4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Animation" id="Animation_b35yi"]
+resource_name = "rotate"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="Animation" id="Animation_ul6q4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_foiwq"]
+_data = {
+&"RESET": SubResource("Animation_ul6q4"),
+&"rotate": SubResource("Animation_b35yi")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b35yi"]
+radius = 21.023796
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ul6q4"]
+radius = 21.023796
+
+[node name="EnemyBulletBall" type="Area2D" node_paths=PackedStringArray("bullet_component", "kill_timer_component", "hitbox") groups=["enemy_bullet"]]
+z_index = 10
+script = ExtResource("1_cuuoj")
+bullet_component = NodePath("BulletComponent")
+kill_timer_component = NodePath("KillTimerComponent")
+hitbox = NodePath("Hitbox")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_foiwq")
+autoplay = "default"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_foiwq")
+}
+autoplay = "rotate"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_b35yi")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="BulletComponent" parent="." node_paths=PackedStringArray("bullet_node") instance=ExtResource("4_ul21n")]
+bullet_node = NodePath("..")
+speed = -300.0
+
+[node name="KillTimerComponent" parent="." node_paths=PackedStringArray("target_node") instance=ExtResource("5_atprl")]
+target_node = NodePath("..")
+kill_time = 3.0
+
+[node name="Hitbox" parent="." groups=["hitbox"] instance=ExtResource("6_uxm7m")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_ul6q4")
+debug_color = Color(0, 0.6, 0.69803923, 0)
