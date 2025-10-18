@@ -11,6 +11,7 @@ enum SpawnDirection {
 
 var enemy_scene_dict = {
 	Global.Enemy.LILY_OF_THE_VALLEY: load("res://_scenes/enemy/lily_of_the_valley/lily_of_the_valley.tscn"),
+	Global.Enemy.HIBISCUS: load("res://_scenes/enemy/hibiscus/hibiscus.tscn")
 }
 
 @export var spawn_direction: SpawnDirection = SpawnDirection.RIGHT:

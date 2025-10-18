@@ -1,0 +1,101 @@
+[gd_scene load_steps=13 format=3 uid="uid://dtxgw4ed22kq2"]
+
+[ext_resource type="Script" uid="uid://cy6ojiue2cbmq" path="res://_scripts/enemy/enemy.gd" id="1_5kb0e"]
+[ext_resource type="PackedScene" uid="uid://hvmhjo6ims74" path="res://_scenes/components/brain/brain.tscn" id="2_3154h"]
+[ext_resource type="PackedScene" uid="uid://dat0lqmt2f8en" path="res://_scenes/components/enemy_visuals/enemy_visuals.tscn" id="3_574bf"]
+[ext_resource type="Texture2D" uid="uid://bc5smllpy1mt5" path="res://_assets/enemy/hibiscus/hibiscus.png" id="4_bfvuf"]
+[ext_resource type="PackedScene" uid="uid://crsueisyciqug" path="res://_scenes/components/enemy_bullet_spawner/enemy_bullet_spawner.tscn" id="5_5n7gu"]
+[ext_resource type="PackedScene" uid="uid://urb33rb60afi" path="res://_scenes/enemy/_bullet/enemy_bullet_default.tscn" id="6_gptk5"]
+[ext_resource type="PackedScene" uid="uid://y3x3pxjeobpe" path="res://_scenes/components/hitbox/hitbox.tscn" id="7_q3mhe"]
+[ext_resource type="PackedScene" uid="uid://b5ic42rok082n" path="res://_scenes/components/health/health_component.tscn" id="8_6hkig"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ffy5j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_bfvuf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bfvuf"]
+radius = 31.257
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bfvuf"]
+radius = 27.0
+height = 54.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ffy5j"]
+radius = 19.0
+height = 42.0
+
+[node name="Hibiscus" type="Area2D" node_paths=PackedStringArray("health_component", "hitbox", "hurtbox", "enemy_visuals") groups=["enemy"]]
+z_index = 5
+script = ExtResource("1_5kb0e")
+health_component = NodePath("HealthComponent")
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+enemy_visuals = NodePath("EnemyVisuals")
+
+[node name="Brain" parent="." instance=ExtResource("2_3154h")]
+
+[node name="EnemyVisuals" parent="." node_paths=PackedStringArray("animated_sprite", "hitbox") instance=ExtResource("3_574bf")]
+animated_sprite = NodePath("AnimatedSprite2D")
+hitbox = NodePath("../Hitbox")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyVisuals"]
+sprite_frames = SubResource("SpriteFrames_ffy5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bfvuf")
+debug_color = Color(0, 0.6, 0.7019608, 0)
+
+[node name="BulletSpawners" type="Node2D" parent="."]
+
+[node name="EnemyBulletSpawner" parent="BulletSpawners" instance=ExtResource("5_5n7gu")]
+position = Vector2(-17, -1)
+rotation = -0.5235988
+bullet_scene = ExtResource("6_gptk5")
+bullet_pattern = 1
+one_shot = true
+bullet_speed = -400.0
+bullet_amount = 5
+volley_spread_modifier = 0.2
+
+[node name="EnemyBulletSpawner2" parent="BulletSpawners" instance=ExtResource("5_5n7gu")]
+position = Vector2(-17, -1)
+rotation = 0.5235988
+bullet_scene = ExtResource("6_gptk5")
+bullet_pattern = 1
+one_shot = true
+bullet_speed = -400.0
+bullet_amount = 5
+volley_spread_modifier = 0.2
+
+[node name="EnemyBulletSpawner3" parent="BulletSpawners" instance=ExtResource("5_5n7gu")]
+position = Vector2(-17, -1)
+bullet_scene = ExtResource("6_gptk5")
+bullet_pattern = 1
+one_shot = true
+bullet_speed = -300.0
+bullet_amount = 3
+start_delay = 0.4
+volley_spread_modifier = 0.1
+
+[node name="Hitbox" parent="." groups=["hitbox"] instance=ExtResource("7_q3mhe")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1, -5)
+shape = SubResource("CapsuleShape2D_bfvuf")
+debug_color = Color(1, 0.6, 0.69803923, 0.19607843)
+
+[node name="Hurtbox" parent="." groups=["hurtbox"] instance=ExtResource("7_q3mhe")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-1, -3)
+shape = SubResource("CapsuleShape2D_ffy5j")
+
+[node name="HealthComponent" parent="." instance=ExtResource("8_6hkig")]
+max_health = 6

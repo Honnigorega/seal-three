@@ -27,6 +27,8 @@ enum Actions {
 @export var one_shot = false
 
 @export_group("Bullet")
+## Custom bullet speed. Will override the bullet's default value
+@export var bullet_speed := 0.0
 ## Will pick a random value between -value and value
 @export var bullet_speed_variation := 0.0
 ## How many bullets per shot / volley
@@ -143,6 +145,8 @@ func calculate_frequency() -> float:
 
 func create_bullet() -> Node:
 	var new_bullet = bullet_scene.instantiate()
+	if bullet_speed != 0:
+		new_bullet.get_node("BulletComponent").speed = bullet_speed
 	new_bullet.get_node("BulletComponent").speed_variation = bullet_speed_variation
 	new_bullet.get_node("BulletComponent").accuracy = bullet_accuracy
 	new_bullet.get_node("BulletComponent").max_random_spread = max_random_spread
@@ -157,7 +161,6 @@ func shoot() -> void:
 		new_bullet = create_bullet()
 		# Adjust rotation to match BulletSpawner rotation
 		new_bullet.rotation += global_rotation
-		
 		# TODO: Bullet cancel feature (probably define it for individual projectiles)
 		#if bullet_cancel_on_death: $Bullets.add_child.call_deferred(new_bullet)
 		#else: get_tree().root.add_child.call_deferred(new_bullet)

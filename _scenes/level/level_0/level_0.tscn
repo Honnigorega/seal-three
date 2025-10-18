@@ -170,6 +170,7 @@ brain_chip = SubResource("Resource_345gn")
 
 [node name="EnemySpawnTrigger6" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
 position = Vector2(671, 180)
+enemy_type = 1
 brain_chip = SubResource("Resource_v6cmc")
 
 [node name="EnemySpawnTrigger14" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
