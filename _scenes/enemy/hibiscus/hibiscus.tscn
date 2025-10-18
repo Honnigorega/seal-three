@@ -1,11 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtxgw4ed22kq2"]
+[gd_scene load_steps=14 format=3 uid="uid://dtxgw4ed22kq2"]
 
 [ext_resource type="Script" uid="uid://cy6ojiue2cbmq" path="res://_scripts/enemy/enemy.gd" id="1_5kb0e"]
 [ext_resource type="PackedScene" uid="uid://hvmhjo6ims74" path="res://_scenes/components/brain/brain.tscn" id="2_3154h"]
 [ext_resource type="PackedScene" uid="uid://dat0lqmt2f8en" path="res://_scenes/components/enemy_visuals/enemy_visuals.tscn" id="3_574bf"]
 [ext_resource type="Texture2D" uid="uid://bc5smllpy1mt5" path="res://_assets/enemy/hibiscus/hibiscus.png" id="4_bfvuf"]
 [ext_resource type="PackedScene" uid="uid://crsueisyciqug" path="res://_scenes/components/enemy_bullet_spawner/enemy_bullet_spawner.tscn" id="5_5n7gu"]
-[ext_resource type="PackedScene" uid="uid://urb33rb60afi" path="res://_scenes/enemy/_bullet/enemy_bullet_default.tscn" id="6_gptk5"]
+[ext_resource type="PackedScene" uid="uid://urb33rb60afi" path="res://_scenes/enemy/_bullet/default/enemy_bullet_default.tscn" id="6_gptk5"]
+[ext_resource type="PackedScene" uid="uid://b3dv5iv1o6sw" path="res://_scenes/enemy/_bullet/ball/enemy_bullet_ball.tscn" id="7_ffy5j"]
 [ext_resource type="PackedScene" uid="uid://y3x3pxjeobpe" path="res://_scenes/components/hitbox/hitbox.tscn" id="7_q3mhe"]
 [ext_resource type="PackedScene" uid="uid://b5ic42rok082n" path="res://_scenes/components/health/health_component.tscn" id="8_6hkig"]
 
@@ -60,7 +61,6 @@ rotation = -0.5235988
 bullet_scene = ExtResource("6_gptk5")
 bullet_pattern = 1
 one_shot = true
-bullet_speed = -400.0
 bullet_amount = 5
 volley_spread_modifier = 0.2
 
@@ -70,16 +70,14 @@ rotation = 0.5235988
 bullet_scene = ExtResource("6_gptk5")
 bullet_pattern = 1
 one_shot = true
-bullet_speed = -400.0
 bullet_amount = 5
 volley_spread_modifier = 0.2
 
 [node name="EnemyBulletSpawner3" parent="BulletSpawners" instance=ExtResource("5_5n7gu")]
 position = Vector2(-17, -1)
-bullet_scene = ExtResource("6_gptk5")
+bullet_scene = ExtResource("7_ffy5j")
 bullet_pattern = 1
 one_shot = true
-bullet_speed = -300.0
 bullet_amount = 3
 start_delay = 0.4
 volley_spread_modifier = 0.1
