@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://mpusm0ebbnh7"]
+
+[ext_resource type="Script" uid="uid://38pibloqie5l" path="res://_scenes/components/enemy_rotating_group_spawn_trigger/enemy_rotating_group_spawn_trigger.gd" id="1_rw6qi"]
+
+[node name="EnemyRotatingGroupSpawnTrigger" type="VisibleOnScreenNotifier2D"]
+script = ExtResource("1_rw6qi")
+
+[node name="Sprites" type="Node2D" parent="."]

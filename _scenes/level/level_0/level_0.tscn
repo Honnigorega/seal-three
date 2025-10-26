@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cn5yf5f2xr7cu"]
+[gd_scene load_steps=39 format=3 uid="uid://cn5yf5f2xr7cu"]
 
 [ext_resource type="Texture2D" uid="uid://b2jexltkv2ouy" path="res://_assets/background/development/checkers_3640x360.png" id="1_5wt28"]
 [ext_resource type="Script" uid="uid://wxgotlllxwp4" path="res://_scenes/level/level_0/level_0.gd" id="1_mt7nd"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://7sa75g0r31qa" path="res://_scripts/brain_chip/_wait_distance_instruction.gd" id="11_345gn"]
 [ext_resource type="Script" uid="uid://dbnogpal2q36j" path="res://_scripts/brain_chip/_change_speed_instruction.gd" id="12_ljkrg"]
 [ext_resource type="Script" uid="uid://dnqn2xjxuh08b" path="res://_scripts/brain_chip/_change_angle_instruction.gd" id="13_qsiyn"]
+[ext_resource type="PackedScene" uid="uid://mpusm0ebbnh7" path="res://_scenes/components/enemy_rotating_group_spawn_trigger/enemy_rotating_group_spawn_trigger.tscn" id="14_qsiyn"]
 
 [sub_resource type="Resource" id="Resource_avs67"]
 script = ExtResource("6_6pxtv")
@@ -23,22 +24,6 @@ metadata/_custom_type_script = "uid://dxpnmkwcnokgs"
 [sub_resource type="Resource" id="Resource_345gn"]
 script = ExtResource("7_52x47")
 instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_avs67")])
-
-[sub_resource type="Resource" id="Resource_ljkrg"]
-script = ExtResource("8_avs67")
-metadata/_custom_type_script = "uid://d0q5njetjit6b"
-
-[sub_resource type="Resource" id="Resource_qsiyn"]
-script = ExtResource("9_345gn")
-metadata/_custom_type_script = "uid://yo4t3kr1nxpy"
-
-[sub_resource type="Resource" id="Resource_xwbkf"]
-script = ExtResource("10_xnppv")
-metadata/_custom_type_script = "uid://6juadj6p6tma"
-
-[sub_resource type="Resource" id="Resource_v6cmc"]
-script = ExtResource("7_52x47")
-instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_ljkrg"), SubResource("Resource_qsiyn"), SubResource("Resource_xwbkf")])
 
 [sub_resource type="Resource" id="Resource_cpy3i"]
 script = ExtResource("9_345gn")
@@ -126,6 +111,22 @@ metadata/_custom_type_script = "uid://d0q5njetjit6b"
 script = ExtResource("7_52x47")
 instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_8sfdc"), SubResource("Resource_eelgs"), SubResource("Resource_xnppv")])
 
+[sub_resource type="Resource" id="Resource_ljkrg"]
+script = ExtResource("8_avs67")
+metadata/_custom_type_script = "uid://d0q5njetjit6b"
+
+[sub_resource type="Resource" id="Resource_qsiyn"]
+script = ExtResource("9_345gn")
+metadata/_custom_type_script = "uid://yo4t3kr1nxpy"
+
+[sub_resource type="Resource" id="Resource_xwbkf"]
+script = ExtResource("10_xnppv")
+metadata/_custom_type_script = "uid://6juadj6p6tma"
+
+[sub_resource type="Resource" id="Resource_v6cmc"]
+script = ExtResource("7_52x47")
+instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_ljkrg"), SubResource("Resource_qsiyn"), SubResource("Resource_xwbkf")])
+
 [node name="Level0" type="Node" node_paths=PackedStringArray("player", "player_spawn_point")]
 script = ExtResource("1_mt7nd")
 player = NodePath("Player")
@@ -167,11 +168,6 @@ brain_chip = SubResource("Resource_345gn")
 [node name="EnemySpawnTrigger5" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
 position = Vector2(1037, 180)
 brain_chip = SubResource("Resource_345gn")
-
-[node name="EnemySpawnTrigger6" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(671, 180)
-enemy_type = 1
-brain_chip = SubResource("Resource_v6cmc")
 
 [node name="EnemySpawnTrigger14" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
 position = Vector2(721, 18)
@@ -215,6 +211,22 @@ brain_chip = SubResource("Resource_7ywba")
 [node name="EnemySpawnTrigger9" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
 position = Vector2(1152, 180)
 brain_chip = SubResource("Resource_v6cmc")
+
+[node name="EnemySpawnTrigger6" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
+position = Vector2(661, 179)
+enemy_type = 1
+
+[node name="EnemySpawnTrigger17" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
+position = Vector2(660, 253)
+enemy_type = 1
+
+[node name="EnemySpawnTrigger18" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
+position = Vector2(660, 107)
+enemy_type = 1
+
+[node name="EnemyRotatingGroupSpawnTrigger" parent="EnemySpawns" instance=ExtResource("14_qsiyn")]
+position = Vector2(786, 179)
+enemy_group = Array[int]([0, 0, 0, 0])
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(60, 180)

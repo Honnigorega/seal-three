@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dtxgw4ed22kq2"]
+[gd_scene load_steps=15 format=3 uid="uid://dtxgw4ed22kq2"]
 
 [ext_resource type="Script" uid="uid://cy6ojiue2cbmq" path="res://_scripts/enemy/enemy.gd" id="1_5kb0e"]
 [ext_resource type="PackedScene" uid="uid://hvmhjo6ims74" path="res://_scenes/components/brain/brain.tscn" id="2_3154h"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b3dv5iv1o6sw" path="res://_scenes/enemy/_bullet/ball/enemy_bullet_ball.tscn" id="7_ffy5j"]
 [ext_resource type="PackedScene" uid="uid://y3x3pxjeobpe" path="res://_scenes/components/hitbox/hitbox.tscn" id="7_q3mhe"]
 [ext_resource type="PackedScene" uid="uid://b5ic42rok082n" path="res://_scenes/components/health/health_component.tscn" id="8_6hkig"]
+[ext_resource type="PackedScene" uid="uid://xixo7bxm2mjq" path="res://_scenes/components/kill_timer/kill_timer_component.tscn" id="10_btgpm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ffy5j"]
 animations = [{
@@ -97,3 +98,7 @@ shape = SubResource("CapsuleShape2D_ffy5j")
 
 [node name="HealthComponent" parent="." instance=ExtResource("8_6hkig")]
 max_health = 6
+
+[node name="KillTimerComponent" parent="." node_paths=PackedStringArray("target_node") instance=ExtResource("10_btgpm")]
+target_node = NodePath("..")
+kill_time = 10.0

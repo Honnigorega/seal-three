@@ -5,6 +5,7 @@ extends Node
 @export var hitbox: Hitbox
 @export var hurtbox: Hitbox
 @export var enemy_visuals: EnemyVisuals
+@export var brain_chip: BrainChip = BrainChip.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

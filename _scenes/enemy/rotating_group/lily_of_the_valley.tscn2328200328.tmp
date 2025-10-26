@@ -1,16 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://tlfwelq1c3c4"]
+[gd_scene load_steps=12 format=3 uid="uid://tlfwelq1c3c4"]
 
-[ext_resource type="Script" uid="uid://cy6ojiue2cbmq" path="res://_scripts/enemy/enemy.gd" id="1_5quqt"]
 [ext_resource type="Texture2D" uid="uid://3aav1he7d8nq" path="res://_assets/enemy/lily_of_the_valley/lily_of_the_valley.png" id="1_c6a2b"]
 [ext_resource type="PackedScene" uid="uid://hvmhjo6ims74" path="res://_scenes/components/brain/brain.tscn" id="2_n5w2w"]
 [ext_resource type="PackedScene" uid="uid://crsueisyciqug" path="res://_scenes/components/enemy_bullet_spawner/enemy_bullet_spawner.tscn" id="3_pl5gd"]
-[ext_resource type="PackedScene" uid="uid://urb33rb60afi" path="res://_scenes/enemy/_bullet/default/enemy_bullet_default.tscn" id="4_cidfc"]
-[ext_resource type="PackedScene" uid="uid://dat0lqmt2f8en" path="res://_scenes/components/enemy_visuals/enemy_visuals.tscn" id="4_v03a2"]
+[ext_resource type="PackedScene" uid="uid://urb33rb60afi" path="res://_scenes/enemy/_bullet/default_enemy_bullet.tscn" id="4_cidfc"]
 [ext_resource type="PackedScene" uid="uid://y3x3pxjeobpe" path="res://_scenes/components/hitbox/hitbox.tscn" id="5_cidfc"]
 [ext_resource type="PackedScene" uid="uid://b5ic42rok082n" path="res://_scenes/components/health/health_component.tscn" id="6_5quqt"]
-[ext_resource type="PackedScene" uid="uid://xixo7bxm2mjq" path="res://_scenes/components/kill_timer/kill_timer_component.tscn" id="11_gdnk6"]
+[ext_resource type="Script" uid="uid://dkk8dw36ivjqn" path="res://_scenes/components/health/health_component.gd" id="7_v03a2"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4opqc"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_n5w2w"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -31,23 +29,12 @@ height = 32.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vxpci"]
 height = 24.0
 
-[node name="LilyOfTheValley" type="Area2D" node_paths=PackedStringArray("health_component", "hitbox", "hurtbox", "enemy_visuals") groups=["enemy"]]
-z_index = 5
-script = ExtResource("1_5quqt")
-health_component = NodePath("HealthComponent")
-hitbox = NodePath("Hitbox")
-hurtbox = NodePath("Hurtbox")
-enemy_visuals = NodePath("EnemyVisuals")
+[node name="LilyOfTheValley" type="Area2D"]
 
 [node name="Brain" parent="." instance=ExtResource("2_n5w2w")]
 
-[node name="EnemyVisuals" parent="." node_paths=PackedStringArray("animated_sprite", "hitbox") instance=ExtResource("4_v03a2")]
-animated_sprite = NodePath("")
-hitbox = NodePath("../Hitbox")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyVisuals"]
-sprite_frames = SubResource("SpriteFrames_4opqc")
-autoplay = "default"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n5w2w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_c6a2b")
@@ -62,21 +49,19 @@ bullet_amount = 2
 target_player = true
 fire_rate = 0.2
 
-[node name="Hitbox" parent="." groups=["hitbox"] instance=ExtResource("5_cidfc")]
+[node name="Hitbox" parent="." groups=["enemy_hitbox"] instance=ExtResource("5_cidfc")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_cidfc")
 debug_color = Color(1, 0.6, 0.69803923, 0.19607843)
 
-[node name="Hurtbox" parent="." groups=["hurtbox"] instance=ExtResource("5_cidfc")]
+[node name="Hurtbox" parent="." groups=["player_hurtbox"] instance=ExtResource("5_cidfc")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape2D_vxpci")
 
-[node name="HealthComponent" parent="." instance=ExtResource("6_5quqt")]
-max_health = 2
-
-[node name="KillTimerComponent" parent="." node_paths=PackedStringArray("target_node") instance=ExtResource("11_gdnk6")]
-target_node = NodePath("..")
-kill_time = 10.0
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("hitbox_list") instance=ExtResource("6_5quqt")]
+script = ExtResource("7_v03a2")
+max_health = 5
+hitbox_list = [NodePath("../Hitbox")]
