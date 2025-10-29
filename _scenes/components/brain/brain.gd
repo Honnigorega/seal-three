@@ -8,9 +8,9 @@ extends Node
 ## Can be set from the spawner node, or directly for an enemy as a default
 @export var brain_chip: BrainChip
 ## Default angle the unit will move in
-@export var default_angle := 1.0
+@export var default_angle := 0.0
 ## Default speed the unit will move by
-@export var default_speed := 100.0
+@export var default_speed := 0.0
 
 ## Instructions are read from the brain chip
 var brain_instructions: Array[Instruction] = []
@@ -22,8 +22,8 @@ var state := 0
 
 ## Velocity, angle and speed of the owner's movement
 var velocity := Vector2.ZERO
-var angle := default_angle
-var speed := default_speed
+@onready var angle := default_angle
+@onready var speed := default_speed
 
 ## Speed and angle value transitions
 ## The more weight the faster the transition
@@ -57,11 +57,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if brain_instructions.size() == 0:
-		# Move left as fallback
-		owner.position += Vector2.LEFT * 150.0 * delta
-		return
-	
 	if to_speed != null && speed_weight != 0.0:
 		speed += speed_weight
 		if abs(to_speed - speed) < abs(speed_weight):
