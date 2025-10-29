@@ -42,7 +42,7 @@ enemy_visuals = NodePath("EnemyVisuals")
 [node name="Brain" parent="." instance=ExtResource("2_n5w2w")]
 
 [node name="EnemyVisuals" parent="." node_paths=PackedStringArray("animated_sprite", "hitbox") instance=ExtResource("4_v03a2")]
-animated_sprite = NodePath("")
+animated_sprite = NodePath("AnimatedSprite2D")
 hitbox = NodePath("../Hitbox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyVisuals"]
