@@ -1,131 +1,39 @@
-[gd_scene load_steps=39 format=3 uid="uid://cn5yf5f2xr7cu"]
+[gd_scene load_steps=17 format=3 uid="uid://cn5yf5f2xr7cu"]
 
 [ext_resource type="Texture2D" uid="uid://b2jexltkv2ouy" path="res://_assets/background/development/checkers_3640x360.png" id="1_5wt28"]
 [ext_resource type="Script" uid="uid://wxgotlllxwp4" path="res://_scenes/level/level_0/level_0.gd" id="1_mt7nd"]
 [ext_resource type="Texture2D" uid="uid://635603cbjru6" path="res://_assets/background/development/level_timeline.png" id="3_621ws"]
 [ext_resource type="PackedScene" uid="uid://d1wlh56w20k2l" path="res://_scenes/player/player.tscn" id="3_xriq5"]
 [ext_resource type="PackedScene" uid="uid://c3tlaqpkj5h0f" path="res://_scenes/components/enemy_spawn_trigger/enemy_spawn_trigger.tscn" id="4_v6cmc"]
-[ext_resource type="Script" uid="uid://daiiknws8aoq6" path="res://_scripts/brain_chip/_instruction.gd" id="5_v6cmc"]
-[ext_resource type="Script" uid="uid://dxpnmkwcnokgs" path="res://_scripts/brain_chip/_trigonometric_instruction.gd" id="6_6pxtv"]
-[ext_resource type="Script" uid="uid://midw6nleuvde" path="res://_scripts/brain_chip/_brain_chip.gd" id="7_52x47"]
+[ext_resource type="PackedScene" uid="uid://mpusm0ebbnh7" path="res://_scenes/components/enemy_rotating_group_spawn_trigger/enemy_rotating_group_spawn_trigger.tscn" id="5_sgajl"]
+[ext_resource type="Script" uid="uid://cs6su1g3usd4p" path="res://_scripts/enemy/enemy_group_member.gd" id="6_v6cmc"]
+[ext_resource type="Script" uid="uid://daiiknws8aoq6" path="res://_scripts/brain_chip/_instruction.gd" id="7_52x47"]
 [ext_resource type="Script" uid="uid://d0q5njetjit6b" path="res://_scripts/brain_chip/_move_instruction.gd" id="8_avs67"]
-[ext_resource type="Script" uid="uid://yo4t3kr1nxpy" path="res://_scripts/brain_chip/_wait_time_instruction.gd" id="9_345gn"]
-[ext_resource type="Script" uid="uid://6juadj6p6tma" path="res://_scripts/brain_chip/_shoot_instruction.gd" id="10_xnppv"]
-[ext_resource type="Script" uid="uid://7sa75g0r31qa" path="res://_scripts/brain_chip/_wait_distance_instruction.gd" id="11_345gn"]
-[ext_resource type="Script" uid="uid://dbnogpal2q36j" path="res://_scripts/brain_chip/_change_speed_instruction.gd" id="12_ljkrg"]
-[ext_resource type="Script" uid="uid://dnqn2xjxuh08b" path="res://_scripts/brain_chip/_change_angle_instruction.gd" id="13_qsiyn"]
-[ext_resource type="PackedScene" uid="uid://mpusm0ebbnh7" path="res://_scenes/components/enemy_rotating_group_spawn_trigger/enemy_rotating_group_spawn_trigger.tscn" id="14_qsiyn"]
+[ext_resource type="Script" uid="uid://midw6nleuvde" path="res://_scripts/brain_chip/_brain_chip.gd" id="9_345gn"]
 
-[sub_resource type="Resource" id="Resource_avs67"]
-script = ExtResource("6_6pxtv")
-amp = 100.0
-metadata/_custom_type_script = "uid://dxpnmkwcnokgs"
+[sub_resource type="Resource" id="Resource_sgajl"]
+script = ExtResource("6_v6cmc")
+metadata/_custom_type_script = "uid://cs6su1g3usd4p"
 
-[sub_resource type="Resource" id="Resource_345gn"]
-script = ExtResource("7_52x47")
-instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_avs67")])
+[sub_resource type="Resource" id="Resource_v6cmc"]
+script = ExtResource("6_v6cmc")
+metadata/_custom_type_script = "uid://cs6su1g3usd4p"
 
-[sub_resource type="Resource" id="Resource_cpy3i"]
-script = ExtResource("9_345gn")
-metadata/_custom_type_script = "uid://yo4t3kr1nxpy"
+[sub_resource type="Resource" id="Resource_6pxtv"]
+script = ExtResource("6_v6cmc")
+metadata/_custom_type_script = "uid://cs6su1g3usd4p"
 
-[sub_resource type="Resource" id="Resource_ibceq"]
-script = ExtResource("8_avs67")
-angle = 0.5
-speed = 400.0
-metadata/_custom_type_script = "uid://d0q5njetjit6b"
-
-[sub_resource type="Resource" id="Resource_p6rfk"]
-script = ExtResource("11_345gn")
-distance = 120.0
-metadata/_custom_type_script = "uid://7sa75g0r31qa"
-
-[sub_resource type="Resource" id="Resource_tvfke"]
-script = ExtResource("12_ljkrg")
-to = 20.0
-weight = -10.0
-metadata/_custom_type_script = "uid://dbnogpal2q36j"
-
-[sub_resource type="Resource" id="Resource_uibfo"]
-script = ExtResource("9_345gn")
-time = 0.4
-metadata/_custom_type_script = "uid://yo4t3kr1nxpy"
-
-[sub_resource type="Resource" id="Resource_0llhx"]
-script = ExtResource("10_xnppv")
-metadata/_custom_type_script = "uid://6juadj6p6tma"
-
-[sub_resource type="Resource" id="Resource_fwqkd"]
-script = ExtResource("9_345gn")
-time = 0.4
-metadata/_custom_type_script = "uid://yo4t3kr1nxpy"
-
-[sub_resource type="Resource" id="Resource_02g74"]
-script = ExtResource("13_qsiyn")
-to = 1.0
-weight = 0.005
-metadata/_custom_type_script = "uid://dnqn2xjxuh08b"
-
-[sub_resource type="Resource" id="Resource_0oq08"]
-script = ExtResource("12_ljkrg")
-to = 300.0
-weight = 20.0
-metadata/_custom_type_script = "uid://dbnogpal2q36j"
-
-[sub_resource type="Resource" id="Resource_rv785"]
-script = ExtResource("7_52x47")
-instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_cpy3i"), SubResource("Resource_ibceq"), SubResource("Resource_p6rfk"), SubResource("Resource_tvfke"), SubResource("Resource_uibfo"), SubResource("Resource_0llhx"), SubResource("Resource_fwqkd"), SubResource("Resource_02g74"), SubResource("Resource_0oq08")])
-
-[sub_resource type="Resource" id="Resource_h7lw3"]
-script = ExtResource("8_avs67")
-angle = 1.5
-speed = 400.0
-metadata/_custom_type_script = "uid://d0q5njetjit6b"
-
-[sub_resource type="Resource" id="Resource_x2qyi"]
-script = ExtResource("13_qsiyn")
-to = 1.0
-weight = -0.005
-metadata/_custom_type_script = "uid://dnqn2xjxuh08b"
-
-[sub_resource type="Resource" id="Resource_276ow"]
-script = ExtResource("7_52x47")
-instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_cpy3i"), SubResource("Resource_h7lw3"), SubResource("Resource_p6rfk"), SubResource("Resource_tvfke"), SubResource("Resource_uibfo"), SubResource("Resource_0llhx"), SubResource("Resource_fwqkd"), SubResource("Resource_x2qyi"), SubResource("Resource_0oq08")])
-
-[sub_resource type="Resource" id="Resource_8sfdc"]
-script = ExtResource("8_avs67")
-speed = 500.0
-metadata/_custom_type_script = "uid://d0q5njetjit6b"
-
-[sub_resource type="Resource" id="Resource_eelgs"]
-script = ExtResource("11_345gn")
-distance = 400.0
-metadata/_custom_type_script = "uid://7sa75g0r31qa"
+[sub_resource type="Resource" id="Resource_52x47"]
+script = ExtResource("6_v6cmc")
+metadata/_custom_type_script = "uid://cs6su1g3usd4p"
 
 [sub_resource type="Resource" id="Resource_xnppv"]
 script = ExtResource("8_avs67")
-speed = -100.0
 metadata/_custom_type_script = "uid://d0q5njetjit6b"
-
-[sub_resource type="Resource" id="Resource_7ywba"]
-script = ExtResource("7_52x47")
-instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_8sfdc"), SubResource("Resource_eelgs"), SubResource("Resource_xnppv")])
 
 [sub_resource type="Resource" id="Resource_ljkrg"]
-script = ExtResource("8_avs67")
-metadata/_custom_type_script = "uid://d0q5njetjit6b"
-
-[sub_resource type="Resource" id="Resource_qsiyn"]
 script = ExtResource("9_345gn")
-metadata/_custom_type_script = "uid://yo4t3kr1nxpy"
-
-[sub_resource type="Resource" id="Resource_xwbkf"]
-script = ExtResource("10_xnppv")
-metadata/_custom_type_script = "uid://6juadj6p6tma"
-
-[sub_resource type="Resource" id="Resource_v6cmc"]
-script = ExtResource("7_52x47")
-instructions = Array[ExtResource("5_v6cmc")]([SubResource("Resource_ljkrg"), SubResource("Resource_qsiyn"), SubResource("Resource_xwbkf")])
+instructions = Array[ExtResource("7_52x47")]([SubResource("Resource_xnppv")])
 
 [node name="Level0" type="Node" node_paths=PackedStringArray("player", "player_spawn_point")]
 script = ExtResource("1_mt7nd")
@@ -150,83 +58,61 @@ offset_bottom = 40.0
 texture = ExtResource("3_621ws")
 
 [node name="EnemySpawnTrigger" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(1005, 180)
-brain_chip = SubResource("Resource_345gn")
+position = Vector2(1251, 180)
 
 [node name="EnemySpawnTrigger2" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(1013, 180)
-brain_chip = SubResource("Resource_345gn")
+position = Vector2(1259, 180)
 
 [node name="EnemySpawnTrigger3" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(1021, 180)
-brain_chip = SubResource("Resource_345gn")
+position = Vector2(1267, 180)
 
 [node name="EnemySpawnTrigger4" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(1029, 180)
-brain_chip = SubResource("Resource_345gn")
+position = Vector2(1275, 180)
 
 [node name="EnemySpawnTrigger5" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(1037, 180)
-brain_chip = SubResource("Resource_345gn")
+position = Vector2(1283, 180)
 
 [node name="EnemySpawnTrigger14" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(721, 18)
+position = Vector2(967, 18)
 spawn_direction = 0
-brain_chip = SubResource("Resource_rv785")
 
 [node name="EnemySpawnTrigger16" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(721, 343)
+position = Vector2(967, 343)
 spawn_direction = 1
-brain_chip = SubResource("Resource_276ow")
 
 [node name="EnemySpawnTrigger15" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(840, 18)
+position = Vector2(1086, 18)
 spawn_direction = 0
-brain_chip = SubResource("Resource_rv785")
 
 [node name="EnemySpawnTrigger7" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(939, 99)
-brain_chip = SubResource("Resource_7ywba")
+position = Vector2(1185, 99)
 
 [node name="EnemySpawnTrigger8" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(938, 260)
-brain_chip = SubResource("Resource_7ywba")
+position = Vector2(1184, 260)
 
 [node name="EnemySpawnTrigger10" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(1124, 151)
-brain_chip = SubResource("Resource_7ywba")
+position = Vector2(1370, 151)
 
 [node name="EnemySpawnTrigger11" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(1123, 211)
-brain_chip = SubResource("Resource_7ywba")
+position = Vector2(1369, 211)
 
 [node name="EnemySpawnTrigger12" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(1202, 98)
-brain_chip = SubResource("Resource_7ywba")
+position = Vector2(1448, 98)
 
 [node name="EnemySpawnTrigger13" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(1201, 261)
-brain_chip = SubResource("Resource_7ywba")
+position = Vector2(1447, 261)
 
 [node name="EnemySpawnTrigger9" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(1152, 180)
-brain_chip = SubResource("Resource_v6cmc")
+position = Vector2(1398, 180)
 
 [node name="EnemySpawnTrigger6" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(661, 179)
-enemy_type = 1
+position = Vector2(967, 80)
 
-[node name="EnemySpawnTrigger17" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(660, 253)
-enemy_type = 1
-
-[node name="EnemySpawnTrigger18" parent="EnemySpawns" instance=ExtResource("4_v6cmc")]
-position = Vector2(660, 107)
-enemy_type = 1
-
-[node name="EnemyRotatingGroupSpawnTrigger" parent="EnemySpawns" instance=ExtResource("14_qsiyn")]
-position = Vector2(786, 179)
-enemy_group = Array[int]([0, 0, 0, 0])
+[node name="EnemyRotatingGroupSpawnTrigger" parent="EnemySpawns" instance=ExtResource("5_sgajl")]
+position = Vector2(710, 179)
+enemy_group = Array[ExtResource("6_v6cmc")]([SubResource("Resource_sgajl"), SubResource("Resource_v6cmc"), SubResource("Resource_6pxtv"), SubResource("Resource_52x47")])
+brain_chip = SubResource("Resource_ljkrg")
+group_radius = 64.0
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(60, 180)

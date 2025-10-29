@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgir6ohxdcchh"]
+[gd_scene load_steps=4 format=3 uid="uid://bgir6ohxdcchh"]
 
 [ext_resource type="Script" uid="uid://c6af1boe8rx8y" path="res://_scenes/enemy/rotating_group/rotating_group.gd" id="1_jpyx4"]
 [ext_resource type="PackedScene" uid="uid://xixo7bxm2mjq" path="res://_scenes/components/kill_timer/kill_timer_component.tscn" id="2_r05cb"]
+[ext_resource type="PackedScene" uid="uid://hvmhjo6ims74" path="res://_scenes/components/brain/brain.tscn" id="3_fw8fa"]
 
 [node name="RotatingGroup" type="Node2D"]
 script = ExtResource("1_jpyx4")
@@ -11,3 +12,5 @@ script = ExtResource("1_jpyx4")
 [node name="KillTimerComponent" parent="." node_paths=PackedStringArray("target_node") instance=ExtResource("2_r05cb")]
 target_node = NodePath("..")
 kill_time = 10.0
+
+[node name="Brain" parent="." instance=ExtResource("3_fw8fa")]
