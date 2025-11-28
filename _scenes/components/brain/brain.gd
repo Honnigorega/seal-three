@@ -115,6 +115,9 @@ func _process(delta: float) -> void:
 				next_state()
 		# Wait Time
 		Instruction.InstructionType.WAIT_TIME:
+			if brain_instructions[state].time <= 0:
+				next_state()
+				return
 			if wait_timer.is_stopped():
 				wait_timer.wait_time = brain_instructions[state].time
 				wait_timer.start()
